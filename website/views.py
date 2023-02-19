@@ -13,9 +13,15 @@ def home_page():
 			flash("Username already exits!","danger")
 		else:
 			flash("Successfully created!","success")
-			new_user=User(username=name,teamname=name)
+			new_user=User(username=name,teamname=name,ispassword=0,issecurityquestion=0,isofa=0)
 			db.session.add(new_user)
 			db.session.commit()
 			login_user(new_user)
 			return redirect(url_for("auth.login_page"))
 	return render_template("home_page.html")
+
+@views.route("/dev-login/<user_id>")
+def dev_login(user_id):
+	user=User.query.filter_by(username=user_id).first()
+	login_user(user)
+	return redirect(url_for("auth.login_page"))
