@@ -52,15 +52,9 @@ def logout():
 @auth.route("/last_page/")
 @login_required
 def last_page():
-    if current_user.ispassword == 0:
-        flash("Not authorized", "danger")
-        return redirect(url_for("auth.login_page"))
-    if current_user.issecurityquestion == 0:
+    if current_user.issofa == 0:
         flash("Not authorized", "danger")
         return redirect(url_for("auth.security"))
-    if current_user.isofa == 0:
-        flash("Not authorized", "danger")
-        return redirect(url_for("auth.twofactor"))
     return render_template("last_page.html")
 
 
@@ -77,11 +71,7 @@ def twofactor():
         else:
             flash("You have supplied an invalid 2FA token!", "danger")
             return redirect(url_for("auth.twofactor"))
-    if current_user.ispassword == 0:
-        flash("Not authorized", "danger")
-        return redirect(url_for("auth.login_page"))
     if current_user.issecurityquestion == 0:
         flash("Not authorized", "danger")
         return redirect(url_for("auth.security"))
-
     return render_template("login_2fa.html")
