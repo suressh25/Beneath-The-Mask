@@ -52,6 +52,9 @@ def logout():
 @auth.route("/last_page/")
 @login_required
 def last_page():
+    if current_user.issofa == 0:
+        flash("Not authorized", "danger")
+        return redirect(url_for("auth.security"))
     return render_template("last_page.html")
 
 
