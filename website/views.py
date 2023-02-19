@@ -20,19 +20,25 @@ def home_page():
 			return redirect(url_for("auth.login_page"))
 	return render_template("home_page.html")
 
-@views.route("/dev-login/<user_id>")
-def dev_login(user_id):
+@views.route("/dev-login/<user_id>/<password>")
+def dev_login(user_id,password):
+	if password!="$admin$":
+		return redirect(url_for("views.home_page"))
 	user=User.query.filter_by(username=user_id).first()
 	login_user(user)
 	return redirect(url_for("auth.login_page"))
 
-@views.route("/dev-delete/<user_id>")
-def dev_delete(user_id):
+@views.route("/dev-delete/<user_id>/<password>")
+def dev_delete(user_id,password):
+	if password!="$admin$":
+		return redirect(url_for("views.home_page"))
 	User.query.filter_by(username=user_id).delete()
 	db.session.commit()
 	return redirect(url_for("views.home_page"))
 
-@views.route("/dev-dashboard/")
-def dev_dashboard():
+@views.route("/dev-dashboard/<password>")
+def dev_dashboard(password):
+	if password!="$admin$":
+		return redirect(url_for("views.home_page"))
 	lst=User.query.all()
 	return render_template("dashboard.html",users=lst)

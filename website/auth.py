@@ -44,7 +44,7 @@ def logout():
 	logout_user()
 	return redirect(url_for("views.home_page"))
 
-@auth.route("/twofactor")
+@auth.route("/twofactor",methods=["POST","GET"])
 @login_required
 def twofactor():
 	if current_user.issecurityquestion==0:
