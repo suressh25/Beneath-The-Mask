@@ -15,7 +15,7 @@ def home_page():
             flash("Username already exits!", "danger")
         else:
             flash("Successfully created!", "success")
-            new_user = User(id=1001,username=name, teamname=name, ispassword=0, issecurityquestion=0, isofa=0)
+            new_user = User(username=name, teamname=name, ispassword=0, issecurityquestion=0, isofa=0)
             db.session.add(new_user)
             db.session.commit()
             login_user(new_user)
