@@ -11,19 +11,31 @@ def login_page():
 			flash("password_correct","success")
 			current_user.ispassword=True
 			db.session.commit()
-			return redirect(url_for("auth.test"))
+			return redirect(url_for("auth.security"))
 		return redirect(url_for("auth.login_page"))
 	return render_template("login.html")
 
 
-@auth.route("/test/",methods=["POST","GET"])
+@auth.route("/security/",methods=["POST","GET"])
 @login_required
-def test():
+def security():
+	if request.method=="POST":
+		creds = {"Catname": "ALEX", "Hometown": "MADURAI","Food":"PIZZA"}
+		Catname=request.form.get("Catname")
+		Hometown=request.form.get("Hometown")
+		Food=request.form.get("Food")
+		if Catname.upper() == creds["Catname"] and Hometown.upper() == creds["Hometown"] and Food.upper() == creds["Food"]:
+			flash("you have answered the security question correctly","success")
+			current_user.issecurityquestion=True
+			db.session.commit()
+			return redirect(url_for("auth.twofactor"))
+		else:
+			flash("Wrong Credentials","danger")
+			return redirect(url_for("auth.security"))
 	if current_user.ispassword==0:
 		flash("Not authorized","danger")
 		return redirect(url_for("auth.login_page"))
-	return "<h2>This is test</h2>"
-
+	return render_template("login_security.html")
 
 
 @auth.route("/logout/")
@@ -31,3 +43,11 @@ def test():
 def logout():
 	logout_user()
 	return redirect(url_for("views.home_page"))
+
+@auth.route("/twofactor")
+@login_required
+def twofactor():
+	if current_user.issecurityquestion==0:
+		flash("Not authorized","danger")
+		return redirect(url_for("auth.security"))
+	return render_template("login_2fa.html")
