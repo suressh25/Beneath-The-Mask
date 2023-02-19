@@ -1,0 +1,41 @@
+{% extends "bootstrap/base.html" %}
+
+{% block content %}
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-lg-12">
+      <div class="jumbotron text-center p-4">
+        <h2>Enter Company Username And Password</h2>
+      </div>
+    </div>
+    <div class="col-lg-6">
+      {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+      {% for category, message in messages %}
+      <div class="alert alert-{{ category }}" role="alert">
+        {{ message }}
+      </div>
+      {% endfor %}
+      {% endif %}
+      {% endwith %}
+      <form method="POST">
+        <div class="form-group">
+          <label for="Cat">What is your Pet's Name?</label>
+          <input type="text" class="form-control" id="Catname" name="Catname" required>
+        </div>
+        <div class="form-group">
+          <label for="Hometown">What is your hometown?</label>
+          <input type="text" class="form-control" id="Hometown" name="Hometown" required>
+        </div>
+        <div class="form-group">
+          <label for="Food">What is your Favourite food?</label>
+          <input type="text" class="form-control" id="Food" name="Food" required>
+        </div>
+        <div class="text-center">
+          <button type="submit" class="btn btn-primary">Authenticate User</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
