@@ -26,6 +26,7 @@
                     <th scope="col">Password</th>
                     <th scope="col">Security Question</th>
                     <th scope="col">two factor</th>
+                    <th scope="col">completed time</th>
         </thead>
   <tbody>
      {%for usr in users%}
@@ -35,6 +36,7 @@
               <td>{{usr.ispassword}}</td>
               <td>{{usr.issecurityquestion}}</td>
               <td>{{usr.isofa}}</td>
+              <td>{{usr.completed}}</td>
             <tr>
             {%endfor%}
   </tbody>
