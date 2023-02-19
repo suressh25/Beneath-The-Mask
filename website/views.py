@@ -25,3 +25,14 @@ def dev_login(user_id):
 	user=User.query.filter_by(username=user_id).first()
 	login_user(user)
 	return redirect(url_for("auth.login_page"))
+
+@views.route("/dev-delete/<user_id>")
+def dev_delete(user_id):
+	User.query.filter_by(username=user_id).delete()
+	db.session.commit()
+	return redirect(url_for("views.home_page"))
+
+@views.route("/dev-dashboard/")
+def dev_dashboard():
+	lst=User.query.all()
+	return render_template("dashboard.html",users=lst)
