@@ -1,0 +1,5 @@
+flask
+pyotp
+flask-login
+sqlalchemy
+flask-bootstrap4
