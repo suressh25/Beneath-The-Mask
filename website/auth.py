@@ -3,6 +3,7 @@ from flask_login import login_required, logout_user, current_user
 from . import db
 import pyotp
 import datetime
+#git reset --hard origin/master
 
 auth = Blueprint("auth", __name__)
 
