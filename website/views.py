@@ -2,7 +2,8 @@ from flask import Blueprint, render_template, request, flash, redirect, url_for
 from flask_login import login_user
 from . import db
 from .modals import User
-from website.key_last import key
+from website.key_last import all_key as key
+from .key_last import finished_keys as key2
 
 views = Blueprint("views", __name__)
 
@@ -54,7 +55,7 @@ def dev_dashboard(password):
 def dev_verify(password):
     if request.method == "POST":
         Code = request.form.get("Code")
-        if Code in key:
+        if Code in key2:
             flash("True", "success")
             return redirect(url_for("views.dev_verify", password="$admin$"))
         else:

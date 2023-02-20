@@ -1,4 +1,4 @@
-key = ['KpVaSE3(od)C}32i2m(L', '{JavHxS2[}noxKwcY6C6', '}AZijBQnLSqBJLUuvBtQ', 'Pey(An6>PEpp65sE()e6',
+all_key = ['KpVaSE3(od)C}32i2m(L', '{JavHxS2[}noxKwcY6C6', '}AZijBQnLSqBJLUuvBtQ', 'Pey(An6>PEpp65sE()e6',
        'gEnZJk)epj4tmHVz{Bb7', 'hMU]zSKXD9(qxyjeWH3t', 'xB7U4BXYeP3QBrAkNBbK', 'V(dvSLJzdGb4BDSWCbEn',
        '2(M58XK9>SntAcp[>M9H', 'NLnZ>AcPM({mc2UGo84Z', 'VT5KfR2[Qi5{)9[6SLRq', '(jP9{BoK7HkmTfh4J2[X',
        'A6Zo4K4qRimGkvjQ2Hr7', 'rpyaMP]htJ(ybCz8k53h', 'WGDh}6RGZH8dAU4HJ79F', 'zZsPGe5}XLBtrNTPoUjd',
@@ -115,3 +115,5 @@ key = ['KpVaSE3(od)C}32i2m(L', '{JavHxS2[}noxKwcY6C6', '}AZijBQnLSqBJLUuvBtQ', '
        '>Dcq>(TZKEEiZ6v4f>yX', 'UyiE5jsZC9LjG6hsD49]', '42T]Jfu3{cT>buYJCFyk', 'XnzkmpXGzu5Kvq(wdH}U',
        ']9H8LQh2VhC4Pdq6yyk5', 'zQyX}9p5TBbrHb3ag7bk', 'W5WZQDUp[A>FJ2{NvUve', 'HYS{EGJt{X497d3UGiBD',
        'SmHt}V}V)fxn4JixsvPn', 'GQemRiEFvoCkd2thW[T8', 'MjH8gbF5eL9yAEgF2)x(']
+
+finished_keys = []
