@@ -73,7 +73,7 @@ def last_page():
 def twofactor():
     if request.method == "POST":
         otp = int(request.form.get("otp"))
-        if pyotp.TOTP("JBSWY3DPEHPK3PXP").verify(otp):
+        if pyotp.TOTP("HHYZTDZOINOAS35RUOTCSIGXV35VEIV2").verify(otp):
             current_user.isofa = True
             db.session.commit()
             flash("The TOTP 2FA token is valid", "success")
