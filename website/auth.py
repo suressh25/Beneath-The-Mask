@@ -3,7 +3,10 @@ from flask_login import login_required, logout_user, current_user
 from . import db
 import pyotp
 import datetime
-#git reset --hard origin/master
+from website.key_last import all_key as key
+from .key_last import finished_keys as key2
+
+j = 0
 
 auth = Blueprint("auth", __name__)
 
@@ -54,10 +57,15 @@ def logout():
 @auth.route("/last_page/")
 @login_required
 def last_page():
+    global j
     if current_user.isofa == 0:
         flash("Not authorized", "danger")
         return redirect(url_for("auth.security"))
-    return render_template("last_page.html")
+    a = key[j]
+    key2.append(a)
+    key.remove(a)
+    j += 1
+    return render_template("last_page.html", value=a)
 
 
 @auth.route("/twofactor", methods=["POST", "GET"])
@@ -69,7 +77,7 @@ def twofactor():
             current_user.isofa = True
             db.session.commit()
             flash("The TOTP 2FA token is valid", "success")
-            current_user.completed=datetime.datetime.now()
+            current_user.completed = datetime.datetime.now()
             db.session.commit()
             return redirect(url_for("auth.last_page"))
         else:
