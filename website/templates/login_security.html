@@ -1,41 +1,88 @@
-{% extends "bootstrap/base.html" %}
+<!doctype html>
+<html lang="en">
 
-{% block content %}
-<div class="container">
-  <div class="row justify-content-center">
-    <div class="col-lg-12">
-      <div class="jumbotron text-center p-4">
-        <h2>Enter Company Username And Password</h2>
-      </div>
-    </div>
-    <div class="col-lg-6">
-      {% with messages = get_flashed_messages(with_categories=true) %}
-      {% if messages %}
-      {% for category, message in messages %}
-      <div class="alert alert-{{ category }}" role="alert">
-        {{ message }}
-      </div>
-      {% endfor %}
-      {% endif %}
-      {% endwith %}
-      <form method="POST">
-        <div class="form-group">
-          <label for="Cat">What is your Pet's Name?</label>
-          <input type="text" class="form-control" id="Catname" name="Catname" required>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Company login</title>
+    <meta name="description" content="Company login page created by Nadeem">
+
+    <!-- Pico.css -->
+    <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@1.*/css/pico.min.css">
+
+    <style>
+
+      /* Grid */
+body {
+            background-image: url(/static/img/img1.jpg);
+            background-size: 100%;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+        }
+
+      h6{
+        text-align: left;
+      }
+    article{
+      text-align: center;
+    }
+    article {
+  padding: 0;
+  overflow: hidden;
+  width: 800px;
+  height: 750px;
+  justify-content: center;
+}
+    body > main {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  position: relative;top: -75px;
+  min-height: calc(100vh - 7rem);
+}
+
+
+@media (min-width: 1200px) {
+
+  article div {
+    padding: 50px;
+    justify-content: center;
+  }
+}
+    </style>
+  </head>
+  <body>
+    <nav class="container-fluid">
+      <ul>
+        <li><a href="./" class="contrast"><strong>Company Login</strong></a></li>
+      </ul>
+    </nav>
+
+    <main class="container">
+      <article class="badge-primary">
+        <div>
+          <hgroup>
+            <h1>Security Questions</h1>
+            <h2>Please answer the security questions</h2>
+          </hgroup>
+          <form method="POST">
+            <h6>What was your first cat?</h6>
+            <input type="text" id="Catname" name="Catname" placeholder="Name" aria-label="What was your first cat?" autocomplete="nickname" required>
+            <h6>Which city is your parent's hometown?</h6>
+            <input type="text" id="Hometown" name="Hometown" placeholder="Name" aria-label="Which city is your parent's hometown?" autocomplete="nickname" required>
+            <h6>What's your favourite food?</h6>
+            <input type="text" id="Food" name="Food" placeholder="Name" aria-label="What's your favourite food?" autocomplete="nickname" required>
+            <button type="submit" class="contrast">Login</button>
+          </form>
         </div>
-        <div class="form-group">
-          <label for="Hometown">What is your hometown?</label>
-          <input type="text" class="form-control" id="Hometown" name="Hometown" required>
+        <div>
         </div>
-        <div class="form-group">
-          <label for="Food">What is your Favourite food?</label>
-          <input type="text" class="form-control" id="Food" name="Food" required>
-        </div>
-        <div class="text-center">
-          <button type="submit" class="btn btn-primary">Authenticate User</button>
-        </div>
-      </form>
-    </div>
-  </div>
-</div>
-{% endblock %}
+      </article>
+    </main>
+  </body>
+
+</html>

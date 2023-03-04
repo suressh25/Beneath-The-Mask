@@ -1,24 +1,47 @@
-{% extends "bootstrap/base.html" %}
+<!doctype html>
+<html lang="en">
 
-{% block content %}
-<div class="container">
-  <div class="row justify-content-center">
-    <div class="col-lg-12">
-      <div class="jumbotron text-center p-4">
-        <h2>Dashboard</h2>
-      </div>
-    </div>
-    <div class="col-lg-6">
-      {% with messages = get_flashed_messages(with_categories=true) %}
-      {% if messages %}
-      {% for category, message in messages %}
-      <div class="alert alert-{{ category }}" role="alert">
-        {{ message }}
-      </div>
-      {% endfor %}
-      {% endif %}
-      {% endwith %}
-     <div>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Company login</title>
+    <meta name="description" content="Company login page created by Nadeem">
+
+    <!-- Pico.css -->
+    <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@1.*/css/pico.min.css">
+
+    <style>
+      /* Grid */
+body {
+            background-image: url(/static/img/img1.jpg);
+            background-size: 100%;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+            height: 930px;
+            width: 100%;
+        }
+    article{
+      text-align: center;
+    }
+    hgroup{
+        text-align: center;
+        -webkit-text-fill-color: red;
+    }
+    </style>
+  </head>
+  <body>
+    <nav class="container-fluid">
+      <ul>
+        <li><a href="./" class="contrast"><strong>Company Login</strong></a></li>
+      </ul>
+    </nav>
+          <hgroup>
+            <h1>Admin dashboard</h1>
+            <h2>Breh</h2>
+          </hgroup>
+    <main class="container">
+      <article class="badge-primary">
       <table class="table table-hover table-dark">
         <thead>
          <th scope="col">#</th>
@@ -41,8 +64,8 @@
             {%endfor%}
   </tbody>
 </table>
-     </div> 
-    </div>
-  </div>
-</div>
-{% endblock %}
+      </article>
+    </main>
+  </body>
+
+</html>
