@@ -44,6 +44,26 @@ body {
   position: relative;top: -75px;
   min-height: calc(100vh - 7rem);
 }
+.alert.error {
+  padding: 5px;
+  border-radius: 2px;
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  border: 2px solid darkred;
+  background-color: red;
+  color: white;
+}
+
+.alert.success {
+  padding: 5px;
+  border-radius: 2px;
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  border: 2px solid orange;
+  background-color: yellow;
+  color: black;
+}
+
 
 
 @media (min-width: 1200px) {
@@ -61,6 +81,13 @@ body {
         <li><a href="./" class="contrast"><strong>Company Login</strong></a></li>
       </ul>
     </nav>
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    {% for category, message in messages %}
+      <div class="alert {{ category }}"> {{ message|capitalize }} </div>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
 
     <main class="container">
       <article class="badge-primary">

@@ -39,7 +39,7 @@ def security():
             flash("Wrong Credentials", "danger")
             return redirect(url_for("auth.security"))
     if current_user.ispassword == 0:
-        flash("Not authorized", "danger")
+        flash("Not authorized", "error")
         return redirect(url_for("auth.login_page"))
     return render_template("login_security.html")
 
@@ -74,7 +74,7 @@ def twofactor():
             db.session.commit()
             return redirect(url_for("auth.last_page"))
         else:
-            flash("You have supplied an invalid 2FA token!", "danger")
+            flash("You have supplied an invalid 2FA token!", "error")
             return redirect(url_for("auth.twofactor"))
     if current_user.issecurityquestion == 0:
         flash("Not authorized", "danger")

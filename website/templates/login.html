@@ -50,6 +50,29 @@ body {
     article{
       text-align: center;
     }
+    this initially:
+
+.alert.error {
+  padding: 12px;
+  border-radius: 3px;
+  font-size: 1.2rem;
+  margin-bottom: 16px;
+  border: 2px solid darkred;
+  background-color: red;
+  color: white;
+}
+
+.alert.success {
+  padding: 12px;
+  border-radius: 3px;
+  font-size: 1.2rem;
+  margin-bottom: 16px;
+  border: 2px solid orange;
+  background-color: greenyellow;
+  color: black;
+}
+
+
     </style>
   </head>
   <body>
@@ -58,6 +81,13 @@ body {
         <li><a href="./" class="contrast"><strong>Company Login</strong></a></li>
       </ul>
     </nav>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    {% for category, message in messages %}
+      <div class="alert {{ category }}"> {{ message|capitalize }} </div>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
     <main class="container">
       <article class="badge-primary">
         <div>
