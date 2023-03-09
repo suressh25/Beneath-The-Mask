@@ -4,7 +4,7 @@ from . import db
 import pyotp
 import datetime
 
-
+#private
 auth = Blueprint("auth", __name__)
 
 
