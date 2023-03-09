@@ -4,3 +4,4 @@ flask-login
 sqlalchemy
 flask-bootstrap4
 flask_sqlAlchemy
+gunicorn
