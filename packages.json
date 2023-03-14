@@ -1,0 +1,20 @@
+{
+3    "name": "user_login_flash",
+4    "version": "1.0.0",
+5    "description": "",
+6    "scripts": {
+7        "build": "pip install -r requirements.txt",
+9        "start": "node index.js"
+10    },
+11    "repository": {
+12        "type": "git",
+13        "url": "git+https://github.com/Nadeem-05/user_login_flash.git"
+14    },
+15    "author": "Nadeem-05,suryaaprakassh",
+16    "license": "ISC",
+17    "bugs": {
+18        "url": "https://github.com/Nadeem-05/user_login_flash/issues"
+19    },
+20    "homepage": "https://github.com/Nadeem-05/user_login_flash#readme"
+21}
+22
