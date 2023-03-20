@@ -24,8 +24,11 @@
          <th scope="col">#</th>
                     <th scope="col">Team</th>
                     <th scope="col">Password</th>
+                    <th scope="col">password time</th>
                     <th scope="col">Security Question</th>
+                    <th scope="col">Security time</th>
                     <th scope="col">two factor</th>
+
                     <th scope="col">completed time</th>
         </thead>
   <tbody>
@@ -34,7 +37,9 @@
               <td scope="row">{{usr.id}}</th>
               <td>{{usr.username}}</td>
               <td>{{usr.ispassword}}</td>
+              <td>{{usr.passwordtime}}</td>
               <td>{{usr.issecurityquestion}}</td>
+              <td>{{usr.securitytime}}</td>
               <td>{{usr.isofa}}</td>
               <td>{{usr.completed}}</td>
             <tr>
