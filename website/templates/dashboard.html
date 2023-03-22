@@ -20,13 +20,23 @@ body {
             background-position: center;
             height: 930px;
             width: 100%;
+    border: red;
         }
       html{
           zoom: 75%
       }
-    article{
-      text-align: center;
-    }
+    article {
+  padding: 10;
+  width: 150%;
+  justify-content: flex-start;
+}
+    body > main {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  position: relative;top: -75px;
+  min-height: calc(100vh - 7rem);
+}
     hgroup{
         text-align: center;
         -webkit-text-fill-color: red;
@@ -36,7 +46,7 @@ body {
   <body>
     <nav class="container-fluid">
       <ul>
-        <li><a href="./" class="contrast"><strong>Company Login</strong></a></li>
+        <li><a href="./$admin$" class="contrast"><strong>Company Login</strong></a></li>
       </ul>
     </nav>
           <hgroup>
@@ -45,22 +55,27 @@ body {
           </hgroup>
     <main class="container">
       <article class="badge-primary">
-      <table class="table table-hover table-dark">
+   <table class="table table-hover table-dark">
         <thead>
          <th scope="col">#</th>
                     <th scope="col">Team</th>
                     <th scope="col">Password</th>
+                    <th scope="col">password time</th>
                     <th scope="col">Security Question</th>
+                    <th scope="col">Security time</th>
                     <th scope="col">two factor</th>
+
                     <th scope="col">completed time</th>
         </thead>
   <tbody>
      {%for usr in users%}
             <tr>
-              <td scope="row">{{usr.id}}</th>
+              <td scope="row">{{usr.id}}</td>
               <td>{{usr.username}}</td>
               <td>{{usr.ispassword}}</td>
+              <td>{{usr.passwordtime}}</td>
               <td>{{usr.issecurityquestion}}</td>
+              <td>{{usr.securitytime}}</td>
               <td>{{usr.isofa}}</td>
               <td>{{usr.completed}}</td>
             <tr>
