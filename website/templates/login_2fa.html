@@ -20,7 +20,6 @@ body {
             background-position: center;
             height: 1100px;
             width: 100%;
-            overflow: hidden;
         }
 
       h6{
@@ -52,14 +51,17 @@ body {
   background-color: red;
   color: white;
 }
+    html{
+          zoom: 75%
+      }
 
 .alert.success {
   padding: 12px;
   border-radius: 3px;
   font-size: 1.2rem;
   margin-bottom: 16px;
-  border: 2px solid orange;
-  background-color: greenyellow;
+  border: 2px solid green;
+  background-color: green;
   color: black;
 }
 
@@ -94,7 +96,7 @@ body {
           </hgroup>
           <form method="POST">
             <input type="text" id="otp" name="otp" placeholder="OTP" aria-label="Enter the otp?" autocomplete="nickname" required>
-            <button type="submit" class="contrast">Login</button>
+            <button type="submit" id="submit" class="contrast">Login</button>
           </form>
         </div>
         <div>

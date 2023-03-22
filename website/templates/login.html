@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Company login</title>
-    <meta name="description" content="Company login page created by Nadeem">
+    <meta name="description" content="Company login page">
 
     <!-- Pico.css -->
     <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@1.*/css/pico.min.css">
@@ -25,6 +25,9 @@ article {
   height: 500px;
   justify-content: center;
 }
+html{
+          zoom: 75%
+      }
 
 
 @media (min-width: 1200px) {
@@ -50,7 +53,6 @@ body {
     article{
       text-align: center;
     }
-    this initially:
 
 .alert.error {
   padding: 12px;
@@ -67,8 +69,8 @@ body {
   border-radius: 3px;
   font-size: 1.2rem;
   margin-bottom: 16px;
-  border: 2px solid orange;
-  background-color: greenyellow;
+  border: 2px solid green;
+  background-color: green;
   color: black;
 }
 
@@ -98,7 +100,7 @@ body {
           <form method="POST">
             <input type="text" id="username" name="username" placeholder="Login" aria-label="Login" autocomplete="nickname" required>
             <input type="password" id = "password" name="password" placeholder="Password" aria-label="Password" autocomplete="current-password" required>
-            <button type="submit" class="contrast">Login</button>
+            <button id="submit" type="submit" class="contrast">Login</button>
           </form>
         </div>
         <div>
