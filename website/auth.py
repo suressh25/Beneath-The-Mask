@@ -2,7 +2,6 @@ from flask import Blueprint, render_template, request, redirect, url_for, flash
 from flask_login import login_required, logout_user, current_user
 from . import db
 import pyotp
-import datetime
 
 auth = Blueprint("auth", __name__)
 
@@ -68,8 +67,6 @@ def twofactor():
             current_user.isofa = True
             db.session.commit()
             flash("The TOTP 2FA token is valid", "success")
-            current_user.completed=datetime.datetime.now()
-            db.session.commit()
             return redirect(url_for("auth.last_page"))
         else:
             flash("You have supplied an invalid 2FA token!", "danger")

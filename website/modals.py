@@ -9,4 +9,3 @@ class User(db.Model, UserMixin):
     ispassword = db.Column(db.Boolean)
     issecurityquestion = db.Column(db.Boolean)
     isofa = db.Column(db.Boolean)
-    completed=db.Column(db.DateTime)
