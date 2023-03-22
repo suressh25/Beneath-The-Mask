@@ -12,7 +12,7 @@ def home_page():
         name = request.form.get("username")
         teamname = request.form.get("teamname")
         if User.query.filter_by(username=name).first():
-            flash("Username already exits!", "danger")
+            flash("Username already exits!", "error")
         else:
             flash("Successfully created!", "success")
             new_user = User(username=name, teamname=name, ispassword=0, issecurityquestion=0, isofa=0)

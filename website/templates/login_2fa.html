@@ -1,51 +1,108 @@
-{% extends "bootstrap/base.html" %}
+<!doctype html>
+<html lang="en">
 
-{% block content %}
-<div class="container">
-  <div class="row justify-content-center">
-    <div class="col-lg-12">
-      <div class="jumbotron text-center p-4">
-        <h2>TOTP</h2>
-        <h4>Enter The generate OTP below</h4>
-      </div>
-    </div>
-    <div class="col-lg-7">
-      {% with messages = get_flashed_messages(with_categories=true) %}
-      {% if messages %}
-      {% for category, message in messages %}
-      <div class="alert alert-{{ category }}" role="alert">
-        {{ message }}
-      </div>
-      {% endfor %}
-      {% endif %}
-      {% endwith %}
-      <form method="POST">
-        <div class="form-group">
-          <label for="otp">Generated OTP</label>
-          <input type="hidden" name="secret" value="{{ secret }}" required>
-          <input type="number" class="form-control" id="otp" name="otp" required>
-        </div>
-        <div class="text-center">
-          <button type="submit" class="btn btn-primary">Authenticate User</button>
-        </div>
-      </form>
-    </div>
-  </div>
-</div>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Company login</title>
+    <meta name="description" content="Company login page created by Nadeem">
 
-<script>
-  function copySecret() {
-      /* Get the text field */
-      var copyText = document.getElementById("secret");
+    <!-- Pico.css -->
+    <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@1.*/css/pico.min.css">
+    <style>
 
-      /* Select the text field */
-      copyText.select();
-      copyText.setSelectionRange(0, 99999); /*For mobile devices*/
+      /* Grid */
+body {
+            background-image: url(/static/img/img1.jpg);
+            background-size: 100%;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+            height: 1100px;
+            width: 100%;
+        }
 
-      /* Copy the text inside the text field */
-      document.execCommand("copy");
+      h6{
+        text-align: left;
+      }
+    article{
+      text-align: center;
+    }
+    article {
+  padding: 0;
+  overflow: hidden;
+  width: 800px;
+  height: 400px;
+  justify-content: center;
+}
+    body > main {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  position: relative;bottom: -50px;
+  min-height: calc(100vh - 7rem);
+}
+    .alert.error {
+  padding: 12px;
+  border-radius: 3px;
+  font-size: 1.2rem;
+  margin-bottom: 16px;
+  border: 2px solid darkred;
+  background-color: red;
+  color: white;
+}
+    html{
+          zoom: 75%
+      }
 
-      alert("Successfully copied TOTP secret token!");
+.alert.success {
+  padding: 12px;
+  border-radius: 3px;
+  font-size: 1.2rem;
+  margin-bottom: 16px;
+  border: 2px solid green;
+  background-color: green;
+  color: black;
+}
+
+@media (min-width: 1200px) {
+
+  article div {
+    padding: 50px;
+    justify-content: center;
   }
-</script>
-{% endblock %}
+}
+    </style>
+  </head>
+  <body>
+    <nav class="container-fluid">
+      <ul>
+        <li><a href="./" class="contrast"><strong>Company Login</strong></a></li>
+      </ul>
+    </nav>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    {% for category, message in messages %}
+      <div class="alert {{ category }}"> {{ message|capitalize }} </div>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+    <main class="container">
+      <article class="badge-primary">
+        <div>
+          <hgroup>
+            <h1>TOTP</h1>
+            <h2>Please enter the otp generated</h2>
+          </hgroup>
+          <form method="POST">
+            <input type="text" id="otp" name="otp" placeholder="OTP" aria-label="Enter the otp?" autocomplete="nickname" required>
+            <button type="submit" id="submit" class="contrast">Login</button>
+          </form>
+        </div>
+        <div>
+        </div>
+      </article>
+    </main>
+  </body>
+
+</html>
