@@ -14,7 +14,6 @@ def login_page():
         if request.form.get("username") == "bruh" and request.form.get("password") == "bruh@123":
             flash("password_correct", "success")
             current_user.ispassword = True
-            current_user.passwordtime = datetime.datetime.now()
             db.session.commit()
             return redirect(url_for("auth.security"))
         return redirect(url_for("auth.login_page"))
@@ -30,10 +29,9 @@ def security():
         Hometown = request.form.get("Hometown")
         Food = request.form.get("Food")
         if Catname.upper() == creds["Catname"] and Hometown.upper() == creds["Hometown"] and Food.upper() == creds[
-                "Food"]:
+            "Food"]:
             flash("you have answered the security question correctly", "success")
             current_user.issecurityquestion = True
-            current_user.securitytime = datetime.datetime.now()
             db.session.commit()
             return redirect(url_for("auth.twofactor"))
         else:
@@ -66,11 +64,11 @@ def last_page():
 def twofactor():
     if request.method == "POST":
         otp = int(request.form.get("otp"))
-        if pyotp.TOTP("HHYZTDZOINOAS35RUOTCSIGXV35VEIV2").verify(otp):
+        if pyotp.TOTP("JBSWY3DPEHPK3PXP").verify(otp):
             current_user.isofa = True
             db.session.commit()
             flash("The TOTP 2FA token is valid", "success")
-            current_user.completed = datetime.datetime.now()
+            current_user.completed=datetime.datetime.now()
             db.session.commit()
             return redirect(url_for("auth.last_page"))
         else:
