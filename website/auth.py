@@ -11,13 +11,15 @@ auth = Blueprint("auth", __name__)
 @login_required
 def login_page():
     if request.method == "POST":
-        if request.form.get("username").upper() == "KISHORE KARTHIK" and request.form.get("password").upper() == "KISHORE2004":
+        if request.form.get("username").upper() == "KISHORE KARTHIK" and request.form.get("password").upper() == "KISHOREKARTHIK2004":
             flash("Suspicious Activity! please answer security questions to continue", "success")
             current_user.ispassword = True
             current_user.passwordtime = f"{datetime.datetime.now().hour}:{datetime.datetime.now().minute}:{datetime.datetime.now().second}"
             db.session.commit()
             return redirect(url_for("auth.security"))
-        return redirect(url_for("auth.login_page"))
+        else:
+            flash("Authentication failed!", "error")
+            return redirect(url_for("auth.login_page"))
     return render_template("login.html")
 
 
@@ -25,7 +27,7 @@ def login_page():
 @login_required
 def security():
     if request.method == "POST":
-        creds = {"Catname": "SURYA", "Hometown": "MESSI", "Food": "RAMANI GEORGE"}
+        creds = {"Catname": "SURYAPRAKASH", "Hometown": "MESSI", "Food": "RAMANI GEORGE"}
         Catname = request.form.get("Catname")
         Hometown = request.form.get("Hometown")
         Food = request.form.get("Food")
@@ -37,7 +39,7 @@ def security():
             db.session.commit()
             return redirect(url_for("auth.twofactor"))
         else:
-            flash("oops! Something wrong!", "danger")
+            flash("oops! Something wrong!", "error")
             return redirect(url_for("auth.security"))
     if current_user.ispassword == 0:
         flash("Not authorized", "danger")
@@ -65,16 +67,19 @@ def last_page():
 @login_required
 def twofactor():
     if request.method == "POST":
-        otp = int(request.form.get("otp"))
+        otp = request.form.get("otp")
+        if not otp.isdigit():
+            flash("Enter numbers!", "error")
+            return redirect(url_for("auth.twofactor"))
+        otp = int(otp)
         if pyotp.TOTP("HHYZTDZOINOAS35RUOTCSIGXV35VEIV2").verify(otp):
             current_user.isofa = True
             db.session.commit()
-            flash("The TOTP 2FA token is valid", "success")
             current_user.completed = f"{datetime.datetime.now().hour}:{datetime.datetime.now().minute}:{datetime.datetime.now().second}"
             db.session.commit()
             return redirect(url_for("auth.last_page"))
         else:
-            flash("You have supplied an invalid 2FA token!", "danger")
+            flash("You have supplied an invalid OTP!", "error")
             return redirect(url_for("auth.twofactor"))
     if current_user.issecurityquestion == 0:
         flash("Not authorized", "danger")
