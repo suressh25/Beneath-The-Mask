@@ -13,7 +13,7 @@ def login_page():
         if request.form.get("username").upper() == "KISHORE KARTHIK" and request.form.get("password").upper() == "KISHORE2004":
             flash("Suspicious Activity! please answer security questions to continue", "success")
             current_user.ispassword = True
-            current_user.passwordtime = f"{datetime.datetime.now().hour}:{datetime.datetime.now().minute}:{datetime.datetime.now().microsecond}"
+            current_user.passwordtime = f"{datetime.datetime.now().hour}:{datetime.datetime.now().minute}:{datetime.datetime.now().second}"
             db.session.commit()
             return redirect(url_for("auth.security"))
         return redirect(url_for("auth.login_page"))
@@ -32,7 +32,7 @@ def security():
                 "Food"]:
             flash("you have answered the security question correctly", "success")
             current_user.issecurityquestion = True
-            current_user.securitytime = f"{datetime.datetime.now().hour}:{datetime.datetime.now().minute}:{datetime.datetime.now().microsecond}"
+            current_user.securitytime = f"{datetime.datetime.now().hour}:{datetime.datetime.now().minute}:{datetime.datetime.now().second}"
             db.session.commit()
             return redirect(url_for("auth.twofactor"))
         else:
@@ -69,7 +69,7 @@ def twofactor():
             current_user.isofa = True
             db.session.commit()
             flash("The TOTP 2FA token is valid", "success")
-            current_user.completed = f"{datetime.datetime.now().hour}:{datetime.datetime.now().minute}:{datetime.datetime.now().microsecond}"
+            current_user.completed = f"{datetime.datetime.now().hour}:{datetime.datetime.now().minute}:{datetime.datetime.now().second}"
             db.session.commit()
             return redirect(url_for("auth.last_page"))
         else:
