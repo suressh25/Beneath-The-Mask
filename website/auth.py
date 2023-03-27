@@ -11,7 +11,7 @@ auth = Blueprint("auth", __name__)
 @login_required
 def login_page():
     if request.method == "POST":
-        if request.form.get("username").upper() == "KISHORE KARTHIK" and request.form.get("password").upper() == "KISHOREKARTHIK2004":
+        if request.form.get("username").upper() == "KISHOREKARTHIK" and request.form.get("password").upper() == "KISHOREKARTHIK2004":
             flash("Suspicious Activity! please answer security questions to continue", "success")
             current_user.ispassword = True
             current_user.passwordtime = f"{datetime.datetime.now().hour}:{datetime.datetime.now().minute}:{datetime.datetime.now().second}"
@@ -26,6 +26,7 @@ def login_page():
 @auth.route("/security/", methods=["POST", "GET"])
 @login_required
 def security():
+    wrongans=[]
     if request.method == "POST":
         creds = {"Catname": "SURYAPRAKASH", "Hometown": "MESSI", "Food": "RAMANI GEORGE"}
         Catname = request.form.get("Catname")
@@ -39,7 +40,14 @@ def security():
             db.session.commit()
             return redirect(url_for("auth.twofactor"))
         else:
-            flash("oops! Something wrong!", "error")
+            if(Catname.upper()!= creds["Catname"]):
+                wrongans.append("friend name,")
+            if(Hometown.upper()!= creds["Hometown"]):
+                wrongans.append("Sports Player ,")
+            if(Food.upper()!= creds["Food"]):
+                wrongans.append("Favourite Teacher,")
+
+            flash(" ".join(wrongans)+" are wrong!", "error")
             return redirect(url_for("auth.security"))
     if current_user.ispassword == 0:
         flash("Not authorized", "danger")
