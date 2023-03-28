@@ -3,17 +3,19 @@ from flask_login import login_required, logout_user, current_user
 from . import db
 import pyotp
 from stopwatch import *
+
 auth = Blueprint("auth", __name__)
 
 stopwatch = Stopwatch(2)
+
 
 @auth.route("/login/", methods=["POST", "GET"])
 @login_required
 def login_page():
     if request.method == "POST":
-        if request.form.get("username").upper() == "KISHOREKARTHIK" and request.form.get(
-                "password").upper() == "KISHOREKARTHIK2004":
-            flash("Suspicious Activity! please answer security questions to continue", "success")
+        if request.form.get("username").upper() in ["KISHOREKARTHIK", "KISHORE KARTHIK"] and \
+                request.form.get("password").upper() == "KISHOREKARTHIK2004":
+            flash("Suspicious Activity! please answer security questions to continue", "doubt")
             current_user.ispassword = True
             current_user.passwordtime = f"{str(stopwatch)}"
             db.session.commit()
