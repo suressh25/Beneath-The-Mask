@@ -3,18 +3,21 @@ from flask_login import login_required, logout_user, current_user
 from . import db
 import pyotp
 import datetime
-
+import time
+from stopwatch import *
 auth = Blueprint("auth", __name__)
 
+stopwatch = Stopwatch(2)
 
 @auth.route("/login/", methods=["POST", "GET"])
 @login_required
 def login_page():
     if request.method == "POST":
-        if request.form.get("username").upper() == "KISHOREKARTHIK" and request.form.get("password").upper() == "KISHOREKARTHIK2004":
+        if request.form.get("username").upper() == "KISHOREKARTHIK" and request.form.get(
+                "password").upper() == "KISHOREKARTHIK2004":
             flash("Suspicious Activity! please answer security questions to continue", "success")
             current_user.ispassword = True
-            current_user.passwordtime = f"{datetime.datetime.now().hour}:{datetime.datetime.now().minute}:{datetime.datetime.now().second}"
+            current_user.passwordtime = f"{str(stopwatch)}"
             db.session.commit()
             return redirect(url_for("auth.security"))
         else:
@@ -26,28 +29,28 @@ def login_page():
 @auth.route("/security/", methods=["POST", "GET"])
 @login_required
 def security():
-    wrongans=[]
+    wrongans = []
     if request.method == "POST":
         creds = {"Catname": "SURYAPRAKASH", "Hometown": "MESSI", "Food": "RAMANI GEORGE"}
         Catname = request.form.get("Catname")
         Hometown = request.form.get("Hometown")
         Food = request.form.get("Food")
         if Catname.upper() == creds["Catname"] and Hometown.upper() == creds["Hometown"] and Food.upper() == creds[
-                "Food"]:
+            "Food"]:
             flash("you have answered the security question correctly", "success")
             current_user.issecurityquestion = True
-            current_user.securitytime = f"{datetime.datetime.now().hour}:{datetime.datetime.now().minute}:{datetime.datetime.now().second}"
+            current_user.securitytime = f"{str(stopwatch)}"
             db.session.commit()
             return redirect(url_for("auth.twofactor"))
         else:
-            if(Catname.upper()!= creds["Catname"]):
+            if Catname.upper() != creds["Catname"]:
                 wrongans.append("friend name,")
-            if(Hometown.upper()!= creds["Hometown"]):
+            if Hometown.upper() != creds["Hometown"]:
                 wrongans.append("Sports Player ,")
-            if(Food.upper()!= creds["Food"]):
+            if Food.upper() != creds["Food"]:
                 wrongans.append("Favourite Teacher,")
 
-            flash(" ".join(wrongans)+" are wrong!", "error")
+            flash(" ".join(wrongans) + " are wrong!", "error")
             return redirect(url_for("auth.security"))
     if current_user.ispassword == 0:
         flash("Not authorized", "danger")
@@ -83,7 +86,7 @@ def twofactor():
         if pyotp.TOTP("HHYZTDZOINOAS35RUOTCSIGXV35VEIV2").verify(otp):
             current_user.isofa = True
             db.session.commit()
-            current_user.completed = f"{datetime.datetime.now().hour}:{datetime.datetime.now().minute}:{datetime.datetime.now().second}"
+            current_user.completed = f"{str(stopwatch)}"
             db.session.commit()
             return redirect(url_for("auth.last_page"))
         else:
