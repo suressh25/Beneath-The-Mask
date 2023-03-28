@@ -2,8 +2,6 @@ from flask import Blueprint, render_template, request, redirect, url_for, flash
 from flask_login import login_required, logout_user, current_user
 from . import db
 import pyotp
-import datetime
-import time
 from stopwatch import *
 auth = Blueprint("auth", __name__)
 
