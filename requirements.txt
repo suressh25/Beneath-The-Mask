@@ -7,3 +7,4 @@ flask_sqlAlchemy
 gunicorn
 psycopg2-binary
 Flask-Migrate
+stopwatch
