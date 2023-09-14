@@ -1,128 +1,136 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Company login</title>
-    <meta name="description" content="Company login page created by Nadeem">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Company login</title>
+  <meta name="description" content="Company login page created by Nadeem" />
 
-    <!-- Pico.css -->
-    <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@1.*/css/pico.min.css">
+  <!-- Pico.css -->
+  <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@1.*/css/pico.min.css" />
 
-    <style>
+  <style>
+    /* Grid */
+    body {
+      background-image: url(/static/img/image.png);
+      background-size: 100%;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-position: center;
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+    }
 
-      /* Grid */
-body {
-            background-image: url(/static/img/img1.jpg);
-            background-size: 100%;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            background-position: center;
-            height: 100%;
-            width: 100%;
-  overflow: hidden;
-        }
+    h6 {
+      text-align: left;
+    }
 
-      h6{
-        text-align: left;
-      }
-    article{
+    article {
       text-align: center;
     }
+
     article {
-  padding: 0;
-  overflow: hidden;
-  width: 800px;
-  height: 750px;
-  justify-content: center;
-}
-    body > main {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  position: relative;top: -75px;
-  min-height: calc(100vh - 7rem);
+      padding: 0;
+      overflow: hidden;
+      width: 800px;
+      height: 750px;
+      justify-content: center;
+    }
 
-}
+    body>main {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      position: relative;
+      top: -75px;
+      min-height: calc(100vh - 7rem);
+      opacity: 80%;
+    }
+
     .alert.error {
-  padding: 12px;
-  border-radius: 3px;
-  font-size: 1.2rem;
-  margin-bottom: 16px;
-  border: 2px solid darkred;
-  background-color: red;
-  color: white;
-}
+      padding: 12px;
+      border-radius: 3px;
+      font-size: 1.2rem;
+      margin-bottom: 16px;
+      border: 2px solid darkred;
+      background-color: red;
+      color: white;
+    }
 
-.alert.success {
-  padding: 12px;
-  border-radius: 3px;
-  font-size: 1.2rem;
-  margin-bottom: 16px;
-  border: 2px solid orange;
-  background-color: green;
-  color: black;
-}
-.alert.doubt {
-  padding: 12px;
-  border-radius: 3px;
-  font-size: 1.2rem;
-  margin-bottom: 16px;
-  border: 2px solid orange;
-  background-color: yellow;
-  color: black;
-}
-html{
-          zoom: 75%
+    .alert.success {
+      padding: 12px;
+      border-radius: 3px;
+      font-size: 1.2rem;
+      margin-bottom: 16px;
+      border: 2px solid orange;
+      background-color: green;
+      color: black;
+    }
+
+    .alert.doubt {
+      padding: 12px;
+      border-radius: 3px;
+      font-size: 1.2rem;
+      margin-bottom: 16px;
+      border: 2px solid orange;
+      background-color: yellow;
+      color: black;
+    }
+
+    html {
+      zoom: 75%
+    }
+
+
+
+
+    @media (min-width: 1200px) {
+
+      article div {
+        padding: 50px;
+        justify-content: center;
       }
+    }
+  </style>
+</head>
 
-
-
-
-@media (min-width: 1200px) {
-
-  article div {
-    padding: 50px;
-    justify-content: center;
-  }
-}
-    </style>
-  </head>
-  <body>
-    <nav class="container-fluid">
-      <ul>
-        <li><a href="./" class="contrast"><strong>Company Login</strong></a></li>
-      </ul>
-    </nav>
-            {% with messages = get_flashed_messages(with_categories=true) %}
-  {% if messages %}
-    {% for category, message in messages %}
-      <div class="alert {{ category }}"> {{ message|capitalize }} </div>
-    {% endfor %}
-  {% endif %}
-{% endwith %}
-    <main class="container">
-      <article class="badge-primary">
-        <div>
-          <hgroup>
-            <h1>Security Questions</h1>
-            <h2>Please answer the security questions</h2>
-          </hgroup>
-          <form method="POST">
-            <h6>Who is your best friend?</h6>
-            <input type="text" id="Catname" name="Catname" placeholder="Name" aria-label="What was your first cat?" autocomplete="nickname" required>
-            <h6>Who is your favourite sportsperson ?</h6>
-            <input type="text" id="Hometown" name="Hometown" placeholder="Name" aria-label="Which city is your parent's hometown?" autocomplete="nickname" required>
-            <h6>Who is your favourite Teacher?</h6>
-            <input type="text" id="Food" name="Food" placeholder="Name" aria-label="What's your favourite food?" autocomplete="nickname" required>
-            <button id="submit" type="submit" class="contrast">Login</button>
-          </form>
-        </div>
-        <div>
-        </div>
-      </article>
-    </main>
-  </body>
+<body>
+  <nav class="container-fluid">
+    <ul>
+      <li>
+        <a href="./" class="contrast"><strong>Company Login</strong></a>
+      </li>
+    </ul>
+  </nav>
+  {% with messages = get_flashed_messages(with_categories=true) %} {% if
+  messages %} {% for category, message in messages %}
+  <div class="alert {{ category }}">{{ message|capitalize }}</div>
+  {% endfor %} {% endif %} {% endwith %}
+  <main class="container">
+    <article class="badge-primary">
+      <div>
+        <hgroup>
+          <h1>Security Questions</h1>
+          <h2>Please answer the security questions</h2>
+        </hgroup>
+        <form method="POST">
+          <h6>What is your Nickname?</h6>
+          <input type="text" id="Catname" name="Catname" placeholder="Name" aria-label="What was your first cat?"
+            autocomplete="nickname" required />
+          <h6>What is your Hobby?</h6>
+          <input type="text" id="Hometown" name="Hometown" placeholder="Passion"
+            aria-label="Which city is your parent's hometown?" autocomplete="nickname" required />
+          <h6>Enter your Date of Birth?(DD/MM/YYYY)</h6>
+          <input type="text" id="Food" name="Food" placeholder="DOB" aria-label="What's your favourite food?"
+            autocomplete="nickname" required />
+          <button id="submit" type="submit" class="contrast">Login</button>
+        </form>
+      </div>
+      <div></div>
+    </article>
+  </main>
+</body>
 
 </html>
