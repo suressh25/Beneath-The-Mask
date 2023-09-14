@@ -13,8 +13,8 @@ stopwatch = Stopwatch(2)
 @login_required
 def login_page():
     if request.method == "POST":
-        if request.form.get("username").upper() in ["KISHOREKARTHIK", "KISHORE KARTHIK"] and \
-                request.form.get("password").upper() == "KISHOREKARTHIK2004":
+        if request.form.get("username").upper() in ["SIDDHARTH", "SIDDHARTH"] and \
+                request.form.get("password").upper() == "SIDDH_2004":
             flash("Suspicious Activity! please answer security questions to continue", "doubt")
             current_user.ispassword = True
             current_user.passwordtime = f"{str(stopwatch)}"
@@ -31,7 +31,7 @@ def login_page():
 def security():
     wrongans = []
     if request.method == "POST":
-        creds = {"Catname": "SURYAPRAKASH", "Hometown": "MESSI", "Food": "RAMANI GEORGE"}
+        creds = {"Catname": "SIDDH", "Hometown": "DRAWING", "Food": "15/09/2004"}
         Catname = request.form.get("Catname")
         Hometown = request.form.get("Hometown")
         Food = request.form.get("Food")
@@ -44,13 +44,13 @@ def security():
             return redirect(url_for("auth.twofactor"))
         else:
             if Catname.upper() != creds["Catname"]:
-                wrongans.append("friend name,")
+                wrongans.append("Nickname")
             if Hometown.upper() != creds["Hometown"]:
-                wrongans.append("Sports Player ,")
+                wrongans.append("Passion")
             if Food.upper() != creds["Food"]:
-                wrongans.append("Favourite Teacher,")
+                wrongans.append("Date of birth")
 
-            flash(" ".join(wrongans) + " are wrong!", "error")
+            flash(" ".join(wrongans) + " is wrong!", "error")
             return redirect(url_for("auth.security"))
     if current_user.ispassword == 0:
         flash("Not authorized", "danger")
@@ -83,7 +83,7 @@ def twofactor():
             flash("Enter numbers!", "error")
             return redirect(url_for("auth.twofactor"))
         otp = int(otp)
-        if pyotp.TOTP("HHYZTDZOINOAS35RUOTCSIGXV35VEIV2").verify(otp):
+        if pyotp.TOTP("QAZWSXEDCRFVTGBYHNUJMIKOLP").verify(otp):
             current_user.isofa = True
             db.session.commit()
             current_user.completed = f"{str(stopwatch)}"
