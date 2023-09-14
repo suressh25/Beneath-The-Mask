@@ -13,7 +13,7 @@ stopwatch = Stopwatch(2)
 @login_required
 def login_page():
     if request.method == "POST":
-        if request.form.get("username").upper() in ["SIDDHARTH", "SIDDHARTH"] and \
+        if request.form.get("username").upper() in ["SIDDHARTHABHIMANYU","SIDDHARTH ABHIMANYU"] and \
                 request.form.get("password").upper() == "SIDDH_2004":
             flash("Suspicious Activity! please answer security questions to continue", "doubt")
             current_user.ispassword = True
