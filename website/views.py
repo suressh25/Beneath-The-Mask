@@ -4,18 +4,19 @@ from . import db
 from .modals import User
 
 views = Blueprint("views", __name__)
-
+key="$admin$"
+home="views.home_page"
 
 @views.route("/", methods=["POST", "GET"])
 def home_page():
     if request.method == "POST":
         name = request.form.get("username")
-        teamname = request.form.get("teamname")
+        collegename = request.form.get("teamname")
         if User.query.filter_by(username=name).first():
             flash("Username already exits!", "error")
         else:
             flash("Successfully created!", "success")
-            new_user = User(username=name, teamname=name, ispassword=0, issecurityquestion=0, isofa=0)
+            new_user = User(username=name, teamname=collegename, ispassword=0, issecurityquestion=0, isofa=0)
             db.session.add(new_user)
             db.session.commit()
             login_user(new_user)
@@ -25,8 +26,8 @@ def home_page():
 
 @views.route("/dev-login/<user_id>/<password>")
 def dev_login(user_id, password):
-    if password != "$admin$":
-        return redirect(url_for("views.home_page"))
+    if password != key:
+        return redirect(url_for(home))
     user = User.query.filter_by(username=user_id).first()
     login_user(user)
     return redirect(url_for("auth.login_page"))
@@ -34,16 +35,16 @@ def dev_login(user_id, password):
 
 @views.route("/dev-delete/<user_id>/<password>")
 def dev_delete(user_id, password):
-    if password != "$admin$":
-        return redirect(url_for("views.home_page"))
+    if password != key:
+        return redirect(url_for(home))
     User.query.filter_by(username=user_id).delete()
     db.session.commit()
-    return redirect(url_for("views.home_page"))
+    return redirect(url_for(home))
 
 
 @views.route("/dev-dashboard/<password>")
 def dev_dashboard(password):
-    if password != "$admin$":
-        return redirect(url_for("views.home_page"))
+    if password != key:
+        return redirect(url_for(home))
     lst = User.query.all()
     return render_template("dashboard.html", users=lst)
