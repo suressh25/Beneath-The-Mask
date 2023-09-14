@@ -1,115 +1,123 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Company login</title>
-    <meta name="description" content="Company login page created by Nadeem">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Company login</title>
+  <meta name="description" content="Company login page created by Nadeem" />
 
-    <!-- Pico.css -->
-    <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@1.*/css/pico.min.css">
+  <!-- Pico.css -->
+  <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@1.*/css/pico.min.css" />
 
-    <style>
+  <style>
+    /* Grid */
+    body {
+      background-image: url(/static/img/image.png);
+      background-size: 100%;
+      background-repeat: no-repeat;
+      background-attachment: fixed;
+      background-position: center;
+      height: 100%;
+      width: 100%;
+      overflow: hidden;
+    }
 
-      /* Grid */
-body {
-            background-image: url(/static/img/img1.jpg);
-            background-size: 100%;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            background-position: center;
-            height: 100%;
-            width: 100%;
-            overflow: hidden;
-        }
+    h6 {
+      text-align: left;
+    }
 
-      h6{
-        text-align: left;
-      }
-    article{
+    article {
       text-align: center;
     }
+
     article {
-  padding: 0;
-  overflow: hidden;
-  width: 800px;
-  height: 650px;
-  justify-content: center;
-}
-    body > main {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  position: relative;top: -75px;
-  min-height: calc(100vh - 7rem);
-}
-.alert.error {
-  padding: 5px;
-  border-radius: 2px;
-  font-size: 1.2rem;
-  margin-bottom: 10px;
-  border: 2px solid darkred;
-  background-color: red;
-  color: white;
-}
+      padding: 0;
+      overflow: hidden;
+      width: 800px;
+      height: 650px;
+      justify-content: center;
+    }
 
-.alert.success {
-  padding: 5px;
-  border-radius: 2px;
-  font-size: 1.2rem;
-  margin-bottom: 10px;
-  border: 2px solid orange;
-  background-color: yellow;
-  color: black;
-}
-html{
-          zoom: 75%
+    body>main {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      position: relative;
+      top: -75px;
+      min-height: calc(100vh - 7rem);
+      opacity: 80%;
+    }
+
+    .alert.error {
+      padding: 5px;
+      border-radius: 2px;
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+      border: 2px solid darkred;
+      background-color: red;
+      color: white;
+    }
+
+    .alert.success {
+      padding: 5px;
+      border-radius: 2px;
+      font-size: 1.2rem;
+      margin-bottom: 10px;
+      border: 2px solid orange;
+      background-color: yellow;
+      color: black;
+    }
+
+    html {
+      zoom: 75%
+    }
+
+
+    @media (min-width: 1200px) {
+
+      article div {
+        padding: 50px;
+        justify-content: center;
       }
+    }
+  </style>
+</head>
 
+<body>
+  <nav class="container-fluid">
+    <ul>
+      <li>
+        <a href="./" class="contrast"><strong>Company Login</strong></a>
+      </li>
+    </ul>
+  </nav>
+  {% with messages = get_flashed_messages(with_categories=true) %} {% if
+  messages %} {% for category, message in messages %}
+  <div class="alert {{ category }}">{{ message|capitalize }}</div>
+  {% endfor %} {% endif %} {% endwith %}
 
-@media (min-width: 1200px) {
-
-  article div {
-    padding: 50px;
-    justify-content: center;
-  }
-}
-    </style>
-  </head>
-  <body>
-    <nav class="container-fluid">
-      <ul>
-        <li><a href="./" class="contrast"><strong>Company Login</strong></a></li>
-      </ul>
-    </nav>
-{% with messages = get_flashed_messages(with_categories=true) %}
-  {% if messages %}
-    {% for category, message in messages %}
-      <div class="alert {{ category }}"> {{ message|capitalize }} </div>
-    {% endfor %}
-  {% endif %}
-{% endwith %}
-
-    <main class="container">
-      <article class="badge-primary">
-        <div>
-          <hgroup>
-            <h1>Event Attendance</h1>
-            <h2>Enter your team details here</h2>
-          </hgroup>
-          <form method="POST">
-            <h6>Enter your Username? <strong>[Please Note this down]</strong></h6>
-            <input type="text" id="username" name="username" placeholder="Name" aria-label="username" autocomplete="nickname" required>
-            <h6>Enter your team's Name?</h6>
-            <input type="text" id="teamname" name="teamname" placeholder="Name" aria-label="teamname" autocomplete="nickname" required>
-            <button id="submit" type="submit" class="contrast">Login</button>
-          </form>
-        </div>
-        <div>
-        </div>
-      </article>
-    </main>
-  </body>
+  <main class="container">
+    <article class="badge-primary">
+      <div>
+        <hgroup>
+          <h1>Event Attendance</h1>
+          <h2>Enter your details here</h2>
+        </hgroup>
+        <form method="POST">
+          <h6>
+            Enter Your Fullname<strong>[For Certification Purpose]</strong>
+          </h6>
+          <input type="text" id="username" name="username" placeholder="Name" aria-label="username"
+            autocomplete="nickname" required />
+          <h6>Enter Your College Name</h6>
+          <input type="text" id="teamname" name="teamname" placeholder="Name" aria-label="teamname"
+            autocomplete="nickname" required />
+          <button id="submit" type="submit" class="contrast">Login</button>
+        </form>
+      </div>
+    </article>
+  </main>
+</body>
 
 </html>
