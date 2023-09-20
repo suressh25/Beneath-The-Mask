@@ -13,7 +13,7 @@ stopwatch = Stopwatch(2)
 @login_required
 def login_page():
     if request.method == "POST":
-        if request.form.get("username").upper() in ["SIDDHARTHABHIMANYU","SIDDHARTH ABHIMANYU"] and \
+        if request.form.get("username").upper() in ["SIDDHARTH ABHIMANYU", "SIDDHARTHABHIMANYU"] and \
                 request.form.get("password").upper() == "SIDDH_2004":
             flash("Suspicious Activity! please answer security questions to continue", "doubt")
             current_user.ispassword = True
@@ -31,7 +31,7 @@ def login_page():
 def security():
     wrongans = []
     if request.method == "POST":
-        creds = {"Catname": "SIDDH", "Hometown": "DRAWING", "Food": "15/09/2004"}
+        creds = {"Catname": "SIDDH", "Hometown": "DRAWING" or "ART", "Food": "15/09/2004"}
         Catname = request.form.get("Catname")
         Hometown = request.form.get("Hometown")
         Food = request.form.get("Food")
@@ -46,7 +46,7 @@ def security():
             if Catname.upper() != creds["Catname"]:
                 wrongans.append("Nickname")
             if Hometown.upper() != creds["Hometown"]:
-                wrongans.append("Passion")
+                wrongans.append("Hobby")
             if Food.upper() != creds["Food"]:
                 wrongans.append("Date of birth")
 
