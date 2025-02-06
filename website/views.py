@@ -4,8 +4,9 @@ from . import db
 from .modals import User
 
 views = Blueprint("views", __name__)
-key="$admin$"
-home="views.home_page"
+key = "$lapassion$"
+home = "views.home_page"
+
 
 @views.route("/", methods=["POST", "GET"])
 def home_page():
@@ -16,7 +17,13 @@ def home_page():
             flash("Username already exits!", "error")
         else:
             flash("Successfully created!", "success")
-            new_user = User(username=name, teamname=collegename, ispassword=0, issecurityquestion=0, isofa=0)
+            new_user = User(
+                username=name,
+                teamname=collegename,
+                ispassword=0,
+                issecurityquestion=0,
+                isofa=0,
+            )
             db.session.add(new_user)
             db.session.commit()
             login_user(new_user)

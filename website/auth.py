@@ -13,9 +13,14 @@ stopwatch = Stopwatch(2)
 @login_required
 def login_page():
     if request.method == "POST":
-        if request.form.get("username").upper() in ["SIDDHARTH ABHIMANYU", "SIDDHARTHABHIMANYU"] and \
-                request.form.get("password").upper() == "SIDDH_2004":
-            flash("Suspicious Activity! please answer security questions to continue", "doubt")
+        if (
+            request.form.get("username").upper() in ["DEVANANDAN", "DEV ANANDAN"]
+            and request.form.get("password").upper() == "DEV4EVER"
+        ):
+            flash(
+                "Suspicious Activity! please answer security questions to continue",
+                "doubt",
+            )
             current_user.ispassword = True
             current_user.passwordtime = f"{str(stopwatch)}"
             db.session.commit()
@@ -31,12 +36,15 @@ def login_page():
 def security():
     wrongans = []
     if request.method == "POST":
-        creds = {"Catname": "SIDDH", "Hometown": "DRAWING" or "ART", "Food": "15/09/2004"}
+        creds = {"Catname": "04/07/4703", "Hometown": "DIYA", "Food": "ARIJIT SINGH"}
         Catname = request.form.get("Catname")
         Hometown = request.form.get("Hometown")
         Food = request.form.get("Food")
-        if Catname.upper() == creds["Catname"] and Hometown.upper() == creds["Hometown"] and Food.upper() == creds[
-            "Food"]:
+        if (
+            Catname.upper() == creds["Catname"]
+            and Hometown.upper() == creds["Hometown"]
+            and Food.upper() == creds["Food"]
+        ):
             flash("you have answered the security question correctly", "success")
             current_user.issecurityquestion = True
             current_user.securitytime = f"{str(stopwatch)}"
@@ -44,11 +52,11 @@ def security():
             return redirect(url_for("auth.twofactor"))
         else:
             if Catname.upper() != creds["Catname"]:
-                wrongans.append("Nickname")
+                wrongans.append("LunarDOB")
             if Hometown.upper() != creds["Hometown"]:
-                wrongans.append("Hobby")
+                wrongans.append("PetName")
             if Food.upper() != creds["Food"]:
-                wrongans.append("Date of birth")
+                wrongans.append("Artist")
 
             flash(" ".join(wrongans) + " is wrong!", "error")
             return redirect(url_for("auth.security"))
@@ -83,7 +91,7 @@ def twofactor():
             flash("Enter numbers!", "error")
             return redirect(url_for("auth.twofactor"))
         otp = int(otp)
-        if pyotp.TOTP("QAZWSXEDCRFVTGBYHNUJMIKOLP").verify(otp):
+        if pyotp.TOTP("qZyNdBxMoVcKLWtRHpJmCsFAGUEbhYI").verify(otp):
             current_user.isofa = True
             db.session.commit()
             current_user.completed = f"{str(stopwatch)}"
