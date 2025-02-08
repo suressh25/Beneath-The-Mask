@@ -15,7 +15,7 @@ def login_page():
     if request.method == "POST":
         if (
             request.form.get("username").upper() in ["DEVANANDAN", "DEV ANANDAN"]
-            and request.form.get("password").upper() == "DEV4EVER"
+            and request.form.get("password").upper() == "D3V4EVER"
         ):
             flash(
                 "Suspicious Activity! please answer security questions to continue",
